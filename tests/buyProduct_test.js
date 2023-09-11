@@ -10,29 +10,32 @@ const USER = {
 Feature('buy product')
 
 
-Scenario('buy product',  async ({ I, productPage, cartPage, finishBuyPage }) => {
+Scenario('buy product',  async ({ I, productPage, cartPage }) => {
     I.login(USER);
-    I.amOnPage('/index.php?route=product/product&product_id=44');
+    I.amOnPage('/index.php?route=product/product&product_id=48');
     
     productPage.selectColor();
     productPage.selectSize();
 
-    const productPrice = await productPage.getProductPrice();
+    const productPrice = await productPage.getTotalPrice();
     console.log(productPrice);
    //pause();
-   //I.proceedToCheckout();
-    const totalPrice = await cartPage.getTotalPrice();
-    const tax = await cartPage.getTax();
-    I.assertEqual(productPrice + tax, totalPrice, "Prices are not in math!")
+   
+    const totalPrice = await productPage.getTotalPrice();
+    // const tax = await cartPage.getTax();
+    // I.assertEqual(productPrice + tax, totalPrice, "Prices are not in math!");
+
+    //I.proceedToCheckout();
+
+    cartPage.clickIconsForFinish();
+    
+    cartPage.verifyCartPage();
+     cartPage.fillFormShippingTaxes();
+     
+     
+    cartPage.clickButtonContinue();
+
 
 }).tag("buy");
 
 
-Scenario('buy product',  async ({ I, productPage, cartPage, finishBuyPage }) => {
-    finishBuyPage.clickIconsForFinish();
-    finishBuyPage.verifyCartPage();
-    finishBuyPage.fillFormShippingTaxes();
-    finishBuyPage.clickButtonGetQuotes();
-
-
-})

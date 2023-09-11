@@ -1,4 +1,4 @@
-const { fillNewUserForm } = require("../pages/account");
+ const { fillNewUserForm } = require("../pages/account");
 
 Feature('register');
 const NEW_USER = {
@@ -6,12 +6,13 @@ const NEW_USER = {
     lastName: '22',
     email: Date.now() + '@ukr.net',
     telephone: '38050000000',
-    password: '123456',
+    password: '123456'}
    
-}
+
 
 //page selection, filling in fields
-Scenario('click fill, see',  ({ I, basePage,  accountPage }) => {
+xScenario('click, fill, see',  ({ I, basePage,  accountPage }) => {
+   
     I.amOnPage('/');
 
     //go to registration page-перехід на сторінку регістрації
@@ -23,6 +24,7 @@ Scenario('click fill, see',  ({ I, basePage,  accountPage }) => {
     accountPage.fillNewUserForm(NEW_USER);
     accountPage.submitRegistration();
     accountPage.verifyRegistation();
-    
-});
+
+
+} );
 

@@ -4,7 +4,7 @@ module.exports = {
   myAccountSpoiler: {
     xpath: '//*[@id="top-links"]/ul/li/span/span'
   },
-  registorButton: {
+  registerButton: {
     xpath: '//*[@id="top-links"]/ul/li/ul/li[1]'
   },
   languageSelection: {
@@ -21,7 +21,7 @@ module.exports = {
   },
 
   clickRegister() {
-    I.click(this.registorButton);
+    I.click(this.registerButton);
   },
 
   clickLanguage(){
