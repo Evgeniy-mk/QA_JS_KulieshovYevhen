@@ -22,12 +22,8 @@ module.exports = {
     const draftProductPrice = await I.grabTextFrom(this.productPriceText);
     const draftColorPrice = await I.grabTextFrom(this.colorOption);
     const draftSizePrice = await I.grabTextFrom(this.sizeOption);
-  const totalSumPrice = draftProductPrice + draftColorPrice + draftSizePrice; 
+    const totalSumPrice = +draftProductPrice.replace(/[^0-9.]/g, '')+ +draftColorPrice.replace(/[^0-9.]/g, '')+ +draftSizePrice.replace(/[^0-9.]/g, ''); 
     return totalSumPrice;
-    //draftColorPrice.trim().slice(-6, -1);
-    //+draftProductPrice.trim().slice(-6, -1) + 
-          //+draftSizePrice.trim().slice(-6, -1);
-
   },
 
  

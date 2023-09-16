@@ -1,6 +1,4 @@
-//const { emailField, passwordField } = require("./pages/account");
 
-// in this file you can append custom step methods to 'I' object
 emailField = {css:"#input-email"};
 passwordField = {css: "#input-password"};
 signInButton = {xpath: '//a[text()="Sign In"]'};
@@ -18,7 +16,7 @@ module.exports = function() {
     this.click(loginButton);
     this.seeTextEquals("My Orders", myOrdersText);
      },
-     //proceedToCheckout(){}
+    
 
   });
 }

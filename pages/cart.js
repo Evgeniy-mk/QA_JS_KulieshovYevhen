@@ -2,13 +2,7 @@ const { I } = inject();
 
 module.exports = {
 
-//  async getTotalPrice() {
-//     return 1;
-//   },
 
-//   async getTax(){
-//     return 1;
-//   },
   buttonAddToCart: {xpath: '//*[@id="button-cart"]'},
   clickIcons: {xpath:'//*[@id="cart-total2"]' }, 
   checkOutButton: {xpath: '//a[@class="btn-primary btn-r"]'},
@@ -26,8 +20,9 @@ module.exports = {
   buttonCheckBox: {xpath: '//*[@id="agree1"]'}, 
   buttonContinue5: {xpath: '//*[@id="button-payment-method"]'}, 
   buttonConfirmOrder: {xpath: '//*[@id="button-confirm"]'}, 
-
-
+  
+  flatShippingRate: {xpath: '//tr/td[text()="$5.00"]'}, //*[@id="collapse-checkout-confirm"]/div/div[1]/table/tfoot/tr[2]/td[2]
+  totalPrice: {xpath: '//*[@id="collapse-checkout-confirm"]/div/div[1]/table/tfoot/tr[3]/td[2]'},
 
 
   clickIconsForFinish(){
@@ -42,22 +37,32 @@ module.exports = {
     const atribCartPage = 'Checkout';
     I.seeTextEquals(atribCartPage, this.h1);
   },
+     
   
-
-   fillFormShippingTaxes(){
-      //I.fillField(this.firstNameField, NEW_USER.firstName);
-  //   I.fillField(this.countryName);
-  //   I.fillField(this.countryRegionName);
-  //   I.fillField(this.postNumberField, USER.postNumber);
-  },
   clickButtonContinue(){
     I.click(this.buttonContinue2);
     I.click(this.buttonContinue3);
     I.click(this.buttonContinue4);
     I.click(this.buttonCheckBox);
     I.click(this.buttonContinue5);
-    I.click(this.buttonConfirmOrder);
+    //pause();
+    
   },
+
+// берем податок 
+async getFlatShippingRate(){
+  const flatShippingRateField = await I.grabTextFrom(this.flatShippingRate);
+  return flatShippingRateField.replace(/[^0-9.]/g, '');
+},
+// берем повну ціну вартість+податок
+async getTotalPriceField(){
+  const totalPriceField = await I.grabTextFrom(this.totalPrice);
+  return totalPriceField.replace(/[^0-9.]/g, '');
+},
+clickConfirmOrder(){
+  I.click(this.buttonConfirmOrder);
+},
+ 
   verifySuccessPage(){
     const atribCartPage = 'Your order has been placed!';
     I.seeTextEquals(atribCartPage, this.h1);

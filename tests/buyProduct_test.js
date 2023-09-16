@@ -19,22 +19,19 @@ Scenario('buy product',  async ({ I, productPage, cartPage }) => {
 
     const productPrice = await productPage.getTotalPrice();
     console.log(productPrice);
-   //pause();
-   
-    const totalPrice = await productPage.getTotalPrice();
-    // const tax = await cartPage.getTax();
-    // I.assertEqual(productPrice + tax, totalPrice, "Prices are not in math!");
+   //pause(); 
+   cartPage.clickIconsForFinish();
+   cartPage.clickButtonContinue(); 
 
-    //I.proceedToCheckout();
+   //const totalPrice = await productPage.getTotalPrice();
+    const tax = await cartPage.getFlatShippingRate();
+    const resultPrice = await cartPage.getTotalPriceField();
+    console.log(tax);
+    console.log(resultPrice);
 
-    cartPage.clickIconsForFinish();
-    
-    cartPage.verifyCartPage();
-     cartPage.fillFormShippingTaxes();
-     
-     
-    cartPage.clickButtonContinue();
-
+    I.assertEqual(productPrice + tax, resultPrice, "Prices are not in math!");
+     cartPage.clickConfirmOrder();      
+     cartPage.verifyCartPage();
 
 }).tag("buy");
 
