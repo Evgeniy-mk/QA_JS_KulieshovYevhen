@@ -1,9 +1,9 @@
-
-emailField = {css:"#input-email"};
-passwordField = {css: "#input-password"};
-signInButton = {xpath: '//a[text()="Sign In"]'};
-loginButton = {xpath: '//input[@type="submit"]'};
-myOrdersText =  { xpath: '//*[@id="content"]/h2[2]'};
+//const { emailField, passwordField, signInButton,loginButton,myOrdersText } = require("./pages/account");
+const emailField = {css:"#input-email"};
+const passwordField = {css: "#input-password"};
+const signInButton = {xpath: '//a[text()="Sign In"]'};
+const loginButton = {xpath: '//input[@type="submit"]'};
+const myOrdersText =  { xpath: '//*[@id="content"]/h2[2]'};
 
 module.exports = function() {
   return actor({
