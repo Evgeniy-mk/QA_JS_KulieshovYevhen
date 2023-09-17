@@ -1,4 +1,4 @@
-//const { emailField, passwordField, signInButton,loginButton,myOrdersText } = require("./pages/account");
+
 const emailField = {css:"#input-email"};
 const passwordField = {css: "#input-password"};
 const signInButton = {xpath: '//a[text()="Sign In"]'};
