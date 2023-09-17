@@ -52,12 +52,12 @@ module.exports = {
 // берем податок 
 async getFlatShippingRate(){
   const flatShippingRateField = await I.grabTextFrom(this.flatShippingRate);
-  return flatShippingRateField.replace(/[^0-9.]/g, '');
+  return +flatShippingRateField.replace(/[^0-9.]/g, '');
 },
 // берем повну ціну вартість+податок
 async getTotalPriceField(){
   const totalPriceField = await I.grabTextFrom(this.totalPrice);
-  return totalPriceField.replace(/[^0-9.]/g, '');
+  return +totalPriceField.replace(/[^0-9.]/g, '');
 },
 clickConfirmOrder(){
   I.click(this.buttonConfirmOrder);
