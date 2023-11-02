@@ -15,9 +15,9 @@ module.exports = {
   emailField: {xpath: '//*[@id="input-email"]'},
   telephoneField: {xpath: '//*[@id="input-telephone"]'},
   passwordField: {xpath: '//*[@id="input-password"]'},
-  passwordConfigField: {xpath: '//*[@id="input-confirm"]'},
+  passwordConfirmField: {xpath: '//*[@id="input-confirm"]'},
 
-radioField: {xpath: '//*[@id="content"]/form/div/div/input[1]'},
+radioFieldOfAccount: {xpath: '//*[@id="content"]/form/div/div/input[1]'},
 buttonContinue: {xpath: '//*[@id="content"]/form/div/div/input[2]'},
 
 
@@ -34,13 +34,13 @@ buttonContinue: {xpath: '//*[@id="content"]/form/div/div/input[2]'},
     I.fillField(this.emailField, user.email);
     I.fillField(this.telephoneField, user.telephone);
     I.fillField(this.passwordField, user.password);
-    I.fillField(this.passwordConfigField, user.password);
+    I.fillField(this.passwordConfirmField, user.password);
     
     
   },
 
   submitRegistration() {
-    I.click(this.radioField);
+    I.click(this.radioFieldOfAccount);
     I.click(this.buttonContinue);
   },
 

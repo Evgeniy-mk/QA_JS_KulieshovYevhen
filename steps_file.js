@@ -1,10 +1,22 @@
-// in this file you can append custom step methods to 'I' object
+
+const emailField = {css:"#input-email"};
+const passwordField = {css: "#input-password"};
+const signInButton = {xpath: '//a[text()="Sign In"]'};
+const loginButton = {xpath: '//input[@type="submit"]'};
+const myOrdersText =  { xpath: '//*[@id="content"]/h2[2]'};
 
 module.exports = function() {
   return actor({
 
-    // Define custom steps here, use 'this' to access default methods of I.
-    // It is recommended to place a general 'login' function here.
+  login(user) {
+    this.amOnPage('/');
+    this.click(signInButton);
+    this.fillField(emailField, user.email);
+    this.fillField(passwordField,user.password);
+    this.click(loginButton);
+    this.seeTextEquals("My Orders", myOrdersText);
+     },
+    
 
   });
 }
