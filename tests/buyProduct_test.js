@@ -1,3 +1,10 @@
+const FileReader = require('../helpers/fileReader');
+
+const PATH = './productIds.txt';
+const productIds = FileReader.readFile(PATH);
+
+
+
 const USER = {
    
     email: '1694272346089@ukr.net',
@@ -5,15 +12,20 @@ const USER = {
     postNumber: '54018',
     };
 
+    let productLink = new DataTable(['productLink']);
+    productLink.add(['/index.php?route=product/product&product_id=44']);
+    productLink.add(['/index.php?route=product/product&product_id=48']);
+    productLink.add(['/index.php?route=product/product&product_id=68']);
+
     
 
 Feature('buy product')
 
 
-Scenario('buy product',  async ({ I, productPage, cartPage }) => {
+Data(productLink).Scenario('buy product',  async ({ I, productPage, cartPage, current  }) => {
     I.login(USER);
-    I.amOnPage('/index.php?route=product/product&product_id=48');
-    
+    I.amOnPage(current.productLink);
+    console.log(FileReader.convertStringToArray(productIds));
     productPage.selectColor();
     productPage.selectSize();
 
